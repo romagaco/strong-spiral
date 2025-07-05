@@ -1,11 +1,36 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Title from "../components/Title.astro";
+import Layout  from "../layouts/Layout.astro";
+const list = ["manzana", "platano", "zanahoria"]
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content ={Astro.generator} />
+		<title>Astro</title>
+	</head>
+	<body>
+		<Layout>
+				<h1>este titulo no tiene estilos </h1>
+					<Title />
+					<Title text="Hola mundo"/>
+				<ul>
+					{list.map((item) => <li>{item}</li>)}
+				</ul>
+				<button id="my-btn">Click me!</button>
+		</Layout>
 
-<Layout>
-	<Welcome />
-</Layout>
+
+		<script>
+		const buttonElement = document.querySelector("#my-btn");
+		buttonElement?.addEventListener("click", () => {
+			console.log("Hi!");
+		})
+	</script>
+	</body>
+
+
+	
