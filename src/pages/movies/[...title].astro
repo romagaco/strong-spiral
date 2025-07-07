@@ -1,0 +1,61 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import type { GetStaticPaths } from "astro";
+
+export const getStaticPaths = (() => {
+    const pages = [
+        {
+            title:"my-movie",
+            director: "Pedro",
+            year: "2023",
+            pageTitle: "My Movie",
+        },
+
+        {
+            title:"my-movie2",
+            director: "Pedro",
+            year: "2020",
+            pageTitle: "My Movie 2",
+        },
+
+        {
+            title:"my-movie3",
+            director: "Ana",
+            year: "2019",
+            pageTitle: "My Movie 3",
+        },
+        
+    ];
+    return pages.map(({title, director, year, pageTitle}) => {
+        return {
+            params: {title},
+            props: {director, year, pageTitle},
+
+        };
+    });
+});
+
+const {director, year} = Astro.props;
+const { title } = Astro.params;
+---
+
+<Layout>
+<h1>{title}</h1>
+<p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de
+     texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias 
+     desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la 
+     imprenta) desconocido usó una galería de textos y los mezcló de tal manera que
+      logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, 
+      sino que tambien ingresó como texto de relleno en documentos electrónicos,
+       quedando esencialmente igual al original. Fue popularizado en los 60s 
+       con la creación de las hojas "Letraset", las cuales contenian pasajes d
+       e Lorem Ipsum, y más recientemente con software de autoedición, como por e
+       jemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.
+</p>
+
+<p>Director: {director}</p>
+<p>Año: {year}</p>
+</Layout>
+
+
+
