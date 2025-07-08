@@ -1,45 +1,16 @@
 ---
-import Layout from "../../layouts/Layout.astro";
 import type { GetStaticPaths } from "astro";
 
 export const getStaticPaths = (() => {
-    const pages = [
-        {
-            title:"my-movie",
-            director: "Pedro",
-            year: "2023",
-            pageTitle: "My Movie",
-        },
-
-        {
-            title:"my-movie2",
-            director: "Pedro",
-            year: "2020",
-            pageTitle: "My Movie 2",
-        },
-
-        {
-            title:"my-movie3",
-            director: "Ana",
-            year: "2019",
-            pageTitle: "My Movie 3",
-        },
-        
+    return [
+        { params: { title: "test", author: "Pedro"} },
+        { params: { title: "test2", author: "Ana" } },
     ];
-    return pages.map(({title, director, year, pageTitle}) => {
-        return {
-            params: {title},
-            props: {director, year, pageTitle},
+}) satisfies GetStaticPaths;
 
-        };
-    });
-});
-
-const {director, year} = Astro.props;
-const { title } = Astro.params;
+const {author, title} = Astro.params;
 ---
 
-<Layout>
 <h1>{title}</h1>
 <p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de
      texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias 
@@ -53,9 +24,4 @@ const { title } = Astro.params;
        jemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.
 </p>
 
-<p>Director: {director}</p>
-<p>Año: {year}</p>
-</Layout>
-
-
-
+<p>Author: {author}</p>
